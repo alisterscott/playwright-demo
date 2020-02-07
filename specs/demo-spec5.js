@@ -1,24 +1,24 @@
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 import config from 'config';
 
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
 
-describe( 'Puppeteer 5', function() {
+describe( 'Playwright 5', function() {
 	this.timeout( mochaTimeoutMS );
 
-	let browser;
+	let browser, context;
 
 	before( async function() {
-		browser = await puppeteer.launch();
+		browser = await playwright.chromium.launch( { headless: false } );
+		context = await browser.newContext();
 	} );
 
 	it( 'can use xpath selectors to find elements', async function() {
-		const page = await browser.newPage();
+		const page = await context.newPage();
 		await page.goto( `${ config.get( 'baseURL' )}` );
-		await page.waitForXPath( '//span[contains(., "Scissors")]' );
-		const elements = await page.$x( '//span[contains(., "Scissors")]' );
-		await elements[0].click();
-		await page.waitForXPath( '//div[contains(., "Scissors clicked!")]' );
+		await page.waitFor( '//span[contains(., "Scissors")]' );
+		await page.click( '//span[contains(., "Scissors")]' );
+		await page.waitFor( '//div[contains(., "Scissors clicked!")]' );
 	} );
 
 	after( async function() {

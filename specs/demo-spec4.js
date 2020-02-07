@@ -1,26 +1,30 @@
 import assert from 'assert';
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 import config from 'config';
 
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
 
-describe( 'Puppeteer 4', function() {
+describe( 'Playwright 4', function() {
 	this.timeout( mochaTimeoutMS );
 
-	let browser;
+	let browser, context;
 
 	before( async function() {
-		browser = await puppeteer.launch();
+		browser = await playwright.firefox.launch();
+		context = await browser.newContext();
 	} );
 
-	it( 'can check for errors when there are present', async function() {
-		const page = await browser.newPage();
+	it( 'can check for console errors when there are present', async function() {
+		const page = await context.newPage();
 		let errors = '';
-		page.on('pageerror', pageerr => {
-			errors = errors + pageerr;
-		});
+
+		page.on( 'console', msg => {
+			if ( msg.type() === 'error' ) {
+				errors = errors + msg.text();
+			}
+		} );
 		await page.goto( `${ config.get( 'baseURL' )}/error` );
-		assert.equal( errors, 'Error: Purple Monkey Dishwasher Error' );
+		assert( errors.indexOf( 'Purple Monkey Dishwasher Error' ) > -1 );
 	} );
 
 	after( async function() {

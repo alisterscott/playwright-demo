@@ -1,22 +1,22 @@
-import assert from 'assert';
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 import config from 'config';
 
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
 
-describe( 'Puppeteer 1', function() {
+describe( 'Playwright 1', function() {
 	this.timeout( mochaTimeoutMS );
 
-	let browser;
+	let browser, context;
 
 	before( async function() {
-		browser = await puppeteer.launch();
+		browser = await playwright.firefox.launch();
+		context = await browser.newContext();
 	} );
 
 	it( 'can wait for an element to appear', async function() {
-		const page = await browser.newPage();
-		await page.goto( `${ config.get( 'baseURL' )}` );
-		await page.waitFor( '#elementappearschild', { visible: true, timeout: 5000 } );
+		const page = await context.newPage( 'https://webdriverjsdemo.github.io ');
+		// const page = await context.newPage( `${ config.get( 'baseURL' )}` );
+		//await page.waitFor( '#elementappearschild', { visible: true, timeout: 5000 } );
 	} );
 
 	after( async function() {

@@ -1,7 +1,7 @@
 {
-  "name": "puppeteer-demo-project",
+  "name": "playwright-demo-project",
   "version": "1.0.0",
-  "description": "An example puppeteer project to see how this works on circle CI",
+  "description": "An example playwright project to see how this works on circle CI",
   "main": "index.js",
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -12,7 +12,7 @@
     "lodash": "^4.17.15",
     "mocha": "^4.1.0",
     "mocha-parallel-tests": "^2.2.2",
-    "puppeteer": "^1.13.0"
+    "playwright": "^0.10.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -20,12 +20,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alisterscott/puppeteer-demo.git"
+    "url": "git+https://github.com/alisterscott/playwright-demo.git"
   },
   "author": "Alister Scott",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/alisterscott/puppeteer-demo/issues"
+    "url": "https://github.com/alisterscott/playwright-demo/issues"
   },
-  "homepage": "https://github.com/alisterscott/puppeteer-demo#readme"
+  "homepage": "https://github.com/alisterscott/playwright-demo#readme"
 }
