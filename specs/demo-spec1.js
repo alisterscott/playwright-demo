@@ -14,9 +14,8 @@ describe( 'Playwright 1', function() {
 	} );
 
 	it( 'can wait for an element to appear', async function() {
-		const page = await context.newPage( 'https://webdriverjsdemo.github.io ');
-		// const page = await context.newPage( `${ config.get( 'baseURL' )}` );
-		//await page.waitFor( '#elementappearschild', { visible: true, timeout: 5000 } );
+		const page = await context.newPage( `${ config.get( 'baseURL' )}` );
+		await page.waitFor( '#elementappearschild', { visible: true, timeout: 5000 } );
 	} );
 
 	after( async function() {
