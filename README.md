@@ -1,6 +1,6 @@
-# Puppeteer e2e Automated Testing Demo
+# Playwright e2e Automated Testing Demo
 
-A demo project that demonstrates how to use Puppeteer and how to run it using CircleCI.
+A demo project that demonstrates how to use [Playwright](https://github.com/microsoft/playwright) and how to run it using CircleCI.
 
 Build status: [![CircleCI](https://circleci.com/gh/alisterscott/playwright-demo/tree/master.svg?style=svg)](https://circleci.com/gh/alisterscott/playwright-demo/tree/master)
 
