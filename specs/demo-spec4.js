@@ -14,7 +14,7 @@ describe( 'Playwright 4', function() {
 		context = await browser.newContext();
 	} );
 
-	it( 'can check for console errors when there are present', async function() {
+	xit( 'can check for console errors when there are present', async function() {
 		const page = await context.newPage();
 		let errors = '';
 
