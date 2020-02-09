@@ -14,7 +14,7 @@ describe( 'Playwright 4', function() {
 		context = await browser.newContext();
 	} );
 
-	xit( 'can check for console errors when there are present', async function() {
+	it( 'can check for console errors when there are present', async function() {
 		const page = await context.newPage();
 		let errors = '';
 
@@ -24,6 +24,7 @@ describe( 'Playwright 4', function() {
 			}
 		} );
 		await page.goto( `${ config.get( 'baseURL' )}/error` );
+		console.log( errors )
 		assert( errors.indexOf( 'Purple Monkey Dishwasher Error' ) > -1 );
 	} );
 
