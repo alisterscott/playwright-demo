@@ -1,20 +1,21 @@
 import assert from 'assert';
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 import config from 'config';
 
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
 
-describe( 'Puppeteer 3', function() {
+describe( 'Playwright 3', function() {
 	this.timeout( mochaTimeoutMS );
 
-	let browser;
+	let browser, context;
 
 	before( async function() {
-		browser = await puppeteer.launch();
+		browser = await playwright.chromium.launch();
+		context = await browser.newContext();
 	} );
 
 	it( 'can check for errors when there should be none', async function() {
-		const page = await browser.newPage();
+		const page = await context.newPage();
 		let errors = '';
 		page.on('pageerror', pageerr => {
 			errors = errors + pageerr;

@@ -1,20 +1,20 @@
-import assert from 'assert';
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 import config from 'config';
 
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
 
-describe( 'Puppeteer 2', function() {
+describe( 'Playwright 2', function() {
 	this.timeout( mochaTimeoutMS );
 
-	let browser;
+	let browser, context;
 
 	before( async function() {
-		browser = await puppeteer.launch();
+		browser = await playwright.chromium.launch();
+		context = await browser.newContext();
 	} );
 
 	it( 'can handle alerts', async function() {
-		const page = await browser.newPage();
+		const page = await context.newPage();
 		page.on('dialog', async dialog => {
 			console.log(dialog.message());
 			await dialog.accept();
@@ -27,5 +27,4 @@ describe( 'Puppeteer 2', function() {
 	after( async function() {
 		await browser.close();
 	} );
-
 } );
