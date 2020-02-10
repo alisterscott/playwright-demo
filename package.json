@@ -17,7 +17,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "./node_modules/.bin/mocha-parallel-tests --require babel-core/register specs"
+		"test": "./node_modules/.bin/mocha-parallel-tests --require babel-core/register specs",
+		"testseq": "./node_modules/.bin/mocha --require babel-core/register specs-seq"
   },
   "repository": {
     "type": "git",
