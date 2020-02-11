@@ -11,7 +11,7 @@ describe( 'Playwright 4', function() {
 	let browser, context;
 
 	before( async function() {
-		browser = await playwright.chromium.launch();
+		browser = await playwright.webkit.launch();
 		context = await browser.newContext();
 	} );
 
