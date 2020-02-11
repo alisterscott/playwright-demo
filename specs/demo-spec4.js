@@ -25,7 +25,7 @@ describe( 'Playwright 4', function() {
 			//}
 		} );
 		await page.goto( `${ config.get( 'baseURL' )}/error` );
-		assert( errors.indexOf( 'Purple Monkey Dishwasher Error' ) > -1 );
+		assert.equal( errors, 'Purple Monkey Dishwasher Error' );
 	} );
 
 	after( async function() {
