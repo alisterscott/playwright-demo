@@ -5,7 +5,7 @@ import config from 'config';
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
 
 // Doesn't work on CircleCI
-xdescribe( 'Playwright 4', function() {
+describe( 'Playwright 4', function() {
 	this.timeout( mochaTimeoutMS );
 
 	let browser, context;
