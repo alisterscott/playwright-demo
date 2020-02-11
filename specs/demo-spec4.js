@@ -5,7 +5,7 @@ import config from 'config';
 const mochaTimeoutMS = config.get( 'mochaTimeoutMS' );
 
 // Doesn't work on CircleCI
-xdescribe( 'Playwright 4', function() {
+describe( 'Playwright 4', function() {
 	this.timeout( mochaTimeoutMS );
 
 	let browser, context;
@@ -19,11 +19,9 @@ xdescribe( 'Playwright 4', function() {
 		const page = await context.newPage();
 		let errors = '';
 
-		page.on( 'console', msg => {
-			if ( msg.type() === 'error' ) {
-				errors = errors + msg.text();
-			}
-		} );
+		page.on('pageerror', error => {
+			errors = errors + error.message;
+		});
 		await page.goto( `${ config.get( 'baseURL' )}/error` );
 		assert.equal( errors, 'Purple Monkey Dishwasher Error' );
 	} );
