@@ -20,9 +20,9 @@ describe( 'Playwright 4', function() {
 		let errors = '';
 
 		page.on( 'console', msg => {
-			if ( msg.type() === 'error' ) {
+			//if ( msg.type() === 'error' ) {
 				errors = errors + msg.text();
-			}
+			//}
 		} );
 		await page.goto( `${ config.get( 'baseURL' )}/error` );
 		assert( errors.indexOf( 'Purple Monkey Dishwasher Error' ) > -1 );
