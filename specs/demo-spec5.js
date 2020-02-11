@@ -9,7 +9,7 @@ describe( 'Playwright 5', function() {
 	let browser, context;
 
 	before( async function() {
-		browser = await playwright.chromium.launch( { headless: false } );
+		browser = await playwright.chromium.launch();
 		context = await browser.newContext();
 	} );
 
